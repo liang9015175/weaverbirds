@@ -1,0 +1,18 @@
+server:
+  port: 8080
+  address: 0.0.0.0
+  context-path: /weaver
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/liuyanan?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull
+    username: root
+    password:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+mybatis:
+  type-aliases-package: com.liuyanan.domain
+  mapper-locations: com/liuyanan/mapper/*.xml
+  config-location: classpath:/mybatis-config.xml
+debug: true

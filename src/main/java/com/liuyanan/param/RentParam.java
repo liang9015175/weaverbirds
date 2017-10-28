@@ -10,7 +10,7 @@ public class RentParam {
     /**
      * 姓名
      */
-    private String username;
+    private String userName;
     /**
      * 部门ID
      */

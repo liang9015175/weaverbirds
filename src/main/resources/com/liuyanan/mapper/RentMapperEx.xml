@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liuyanan.dao.RentMapperEx">
+    <resultMap id="BaseResultMap" type="com.liuyanan.param.RentGroup">
+        <result column="count" property="count" jdbcType="INTEGER"/>
+        <result column="depart_id" property="departId" jdbcType="INTEGER"/>
+        <result column="depart_name" property="departName" jdbcType="VARCHAR"/>
+        <result column="item_id" property="itemId" jdbcType="INTEGER"/>
+        <result column="item_name" property="itemName" jdbcType="VARCHAR"/>
+        <result column="out_or_in" property="outOrIn" jdbcType="VARCHAR"/>
+    </resultMap>
+    <select id="listGroup" parameterType="java.util.Map" resultMap="BaseResultMap">
+        SELECT
+            depart.id   AS depart_id,
+            depart.NAME AS depart_name,
+            item.id     AS item_id,
+            item.item_name,
+            rent.count,
+            CASE
+            rent.out_or_in
+            WHEN 0
+                THEN
+                    '审核中'
+            ELSE '已审核'
+            END         AS out_or_in
+        FROM
+            rent
+            LEFT JOIN depart ON rent.depart = depart.id
+            LEFT JOIN item ON rent.item_id = item.id
+        WHERE
+            rent.create_at BETWEEN #{startTime}
+            AND #{endTime}
+        GROUP BY
+            depart ASC
+    </select>
+</mapper>

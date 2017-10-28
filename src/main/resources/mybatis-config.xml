@@ -18,7 +18,7 @@
         <setting name="useColumnLabel" value="true"/>
         <!--允许 JDBC 支持生成的键。需要适合的驱动。如果设置为 true 则这个设置强制生成的键被使用，尽管一些驱动拒绝兼容但仍然有效（比如 
             Derby）。 系统默认值是false，设置只是为了展示出来 -->
-        <setting name="useGeneratedKeys" value="false"/>
+        <setting name="useGeneratedKeys" value="true"/>
         <!--配置默认的执行器。SIMPLE 执行器没有什么特别之处。REUSE 执行器重用预处理语句。BATCH 执行器重用语句和批量更新 系统默认值是SIMPLE，设置只是为了展示出来 -->
         <setting name="defaultExecutorType" value="SIMPLE"/>
         <!--设置超时时间，它决定驱动等待一个数据库响应的时间。 系统默认值是null，设置只是为了展示出来 -->

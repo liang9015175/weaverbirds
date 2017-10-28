@@ -16,13 +16,12 @@
             item.id     AS item_id,
             item.item_name,
             rent.count,
-            CASE
-            rent.out_or_in
-            WHEN 0
-                THEN
-                    '审核中'
-            ELSE '已审核'
-            END         AS out_or_in
+            CASE out_or_in
+            WHEN 0 THEN
+                '借入'
+            ELSE
+                '借出'
+            END as out_or_in
         FROM
             rent
             LEFT JOIN depart ON rent.depart = depart.id
@@ -31,6 +30,6 @@
             rent.create_at BETWEEN #{startTime}
             AND #{endTime}
         GROUP BY
-            depart ASC
+            depart ,out_or_in ASC
     </select>
 </mapper>

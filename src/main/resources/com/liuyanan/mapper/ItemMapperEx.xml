@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liuyanan.dao.ItemMapperEx">
+
+    <update id="reduceStockCount" parameterType="map">
+
+        UPDATE item SET
+        <if test="outOrIn ==0">
+            stock_count=stock_count+#{count}
+        </if>
+        <if test="outOrIn ==1">
+            stock_count=stock_count-#{count}
+        </if>
+        WHERE id=#{itemId}
+    </update>
+
+</mapper>

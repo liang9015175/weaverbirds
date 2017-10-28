@@ -70,7 +70,7 @@
         <!-- <table tableName="user" domainObjectName="User">
              <generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>
          </table>-->
-        <table tableName="category">
+        <!--<table tableName="category">
             <generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>
         </table>
         <table tableName="depart">
@@ -80,6 +80,12 @@
             <generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>
         </table>
         <table tableName="rent">
+            <generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>
+        </table>-->
+        <table tableName="office">
+            <generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>
+        </table>
+        <table tableName="office_rent">
             <generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>
         </table>
     </context>

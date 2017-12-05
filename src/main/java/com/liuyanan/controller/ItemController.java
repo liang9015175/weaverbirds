@@ -32,4 +32,9 @@ public class ItemController {
        return itemService.list(itemName,curPage,pageSize);
     }
 
+    @RequestMapping(value = "/cate/list",method = RequestMethod.GET)
+    public List<Item> list(Integer cateId){
+        return itemService.list(cateId);
+    }
+
 }

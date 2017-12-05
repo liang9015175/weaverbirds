@@ -1,0 +1,65 @@
+* {
+    font-size: 14px;
+    font-weight: 400;
+    font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei UI", "Microsoft YaHei", SimHei, "\5B8B\4F53", simsun, sans-serif;
+}
+
+.item{
+    background:#eeeeee;
+    height: 200px;
+    text-align: center;
+    box-shadow: 0px 2px 8px rgba(230, 230, 230, 0.75);
+    border-bottom: 1px solid #F1F1F1;
+
+}
+.item:hover{
+    cursor: pointer;
+}
+.office:hover{
+    cursor: pointer;
+}
+.admin:hover{
+    cursor: pointer;
+}
+.my-container{
+    background: #eeff;
+    border: cornsilk;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    width: 800px;
+    height: 600px;
+}
+.office{
+    background:#e4b9b9;
+    height: 200px;
+    box-shadow: 0px 2px 8px rgba(230, 230, 230, 0.75);
+    border-bottom: 1px solid #F1F1F1;
+}
+.admin{
+    background:#e0e0e0;
+    height: 200px;
+
+    box-shadow: 0px 2px 8px rgba(230, 230, 230, 0.75);
+    border-bottom: 1px solid #F1F1F1;
+}
+.part span{
+    font-size: x-large;
+}
+.part span:hover{
+    display: inline-block;
+    cursor: pointer;
+    color: green;
+    text-decoration: none;
+}
+#search div{
+    float: left;
+    width: 50%;
+}
+#submit_search{
+    float: right;
+    width: 60px;
+    height: 40px;
+    margin-bottom: 20px;
+
+}

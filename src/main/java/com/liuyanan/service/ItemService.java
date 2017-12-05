@@ -31,4 +31,10 @@ public class ItemService {
         RowBounds rowBounds=new RowBounds((curPage-1)*pageSize,pageSize);
         return itemMapper.selectByExampleWithRowbounds(example,rowBounds);
     }
+
+    public List<Item> list(Integer cateId) {
+        ItemExample example=new ItemExample();
+        example.or().andCateIdEqualTo(cateId);
+        return itemMapper.selectByExample(example);
+    }
 }

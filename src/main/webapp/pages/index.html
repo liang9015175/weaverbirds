@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>职工鸟系统管理</title>
+    <link type="text/css" href="css/bootstrap.css" rel="stylesheet">
+    <link type="text/css" href="css/weaver.css" rel="stylesheet">
+    <script type="text/javascript" src="js/jquery-3.2.1.js"></script>
+    <script type="text/javascript" src="js/env.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".item").click(function () {
+                window.location.href="rent.html"
+            })
+            $(".office").click(function () {
+                window.location.href="office_rent.html"
+            })
+            $(".admin").click(function () {
+                window.location.href="rent.html"
+            })
+        })
+
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="row part" style="vertical-align: middle; text-align: center;margin-top: 200px">
+
+                <div class="col-lg-4 item">
+                    <span>物品租借</span>
+                </div>
+                <div class="col-lg-4 office">
+                    <span>办公室申请</span>
+                </div>
+                <div class="col-lg-4 admin">
+                    <span>管理后台</span>
+                </div>
+
+
+        </div>
+    </div>
+</body>
+</html>

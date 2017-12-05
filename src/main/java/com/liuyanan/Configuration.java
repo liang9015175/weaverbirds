@@ -1,5 +1,6 @@
 package com.liuyanan;
 
+import com.github.pagehelper.PageHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
@@ -9,6 +10,7 @@ import org.springframework.format.datetime.DateFormatter;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Properties;
 
 /**
  * Created by songliangliang on 2017/8/21.

@@ -25,8 +25,8 @@ public class CategoryController {
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public List<Category> selectCondition(String categoryName, Integer curPage, Integer pageSize) {
-        return categoryService.selectCondition(categoryName, curPage, pageSize);
+    public List<Category> selectCondition() {
+        return categoryService.selectCondition();
     }
 
     @RequestMapping(value = "/put", method = RequestMethod.PUT)

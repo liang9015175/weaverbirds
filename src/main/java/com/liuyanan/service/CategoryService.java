@@ -22,17 +22,9 @@ public class CategoryService {
         categoryMapper.insertSelective(category);
     }
 
-    public List<Category> selectCondition(String categoryName, Integer curPage, Integer pageSize) {
-        if (curPage == null || curPage <= 1) {
-            curPage = 1;
-        }
-        if (pageSize == null || pageSize <= 1) {
-            pageSize = 1;
-        }
-        Integer offset = (curPage - 1) * pageSize;
-        CategoryExample example = new CategoryExample();
-        example.or().andCategoryNameLike("%" + categoryName + "%").andStatusEqualTo(1);
-        List<Category> categories = categoryMapper.selectByExampleWithRowbounds(example, new RowBounds(offset, pageSize));
+    public List<Category> selectCondition() {
+
+        List<Category> categories = categoryMapper.selectByExample(null);
         return categories;
     }
 

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>办公室申请</title>
+    <link type="text/css" href="css/bootstrap.css" rel="stylesheet">
+    <link type="text/css" href="css/weaver.css" rel="stylesheet">
+    <script type="text/javascript" src="js/jquery-3.2.1.js"></script>
+    <script type="text/javascript" src="js/env.js"></script>
+    <script type="text/javascript">
+
+    </script>
+</head>
+<body>
+<div class="container">
+    <div class="row" style="vertical-align: middle; text-align: center;margin-top: 200px">
+
+        <form role="form" enctype="multipart/form-data" id="form">
+            <table class=" table-responsive" style="width: 100%">
+                <thead class="active">
+                <th colspan="2" style="text-align: center"><h3 class="text-success">办公室申请</h3></th>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="active form-control" style="background-color:#f5f5f5">办公室：</td>
+                    <td> <select class="form-control" name="officeId">
+                        <option selected>A</option>
+                        <option>B</option>
+                        <option>C</option>
+                        <option>D</option>
+                        <option>E</option>
+                    </select></td>
+                </tr>
+                <tr>
+                    <td class="active form-control" style="background-color:#f5f5f5">申请人：</td>
+                    <td><input type="text" class="form-control" placeholder="请输入您的姓名." name="applicant"></td>
+                </tr>
+                <tr>
+                    <td class="active form-control" style="background-color:#f5f5f5">申请内容：</td>
+                    <td><input type="text" class="form-control" placeholder="请输入申请内容." name="applicant"></td>
+                </tr>
+                <tr>
+                    <td class="active form-control" style="background-color:#f5f5f5">申请部门：</td>
+                    <td>
+                        <select class="form-control" name="dep
+                        artId">
+                            <option selected>A</option>
+                            <option>B</option>
+                            <option>C</option>
+                            <option>D</option>
+                            <option>E</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="active form-control" style="background-color:#f5f5f5">开始时间：</td>
+                    <td>
+                        <input type="text" class="form-control" placeholder="请输入开始时间." name="startTime">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="active form-control" style="background-color:#f5f5f5">结束时间：</td>
+                    <td>
+                        <input type="text" class="form-control" placeholder="请输入结束时间." name="endTime">
+                    </td>
+                </tr>
+                </tbody>
+                <tfoot style="margin-top: 10px">
+                <tr>
+                    <td colspan="2" style="text-align: center">
+                        <input type="button" class="btn" value="提交" style="margin-right: 100px" onclick="addLamu()">
+                        <input type="reset" class="btn" value="取消">
+                    </td>
+                </tr>
+                </tfoot>
+            </table>
+        </form>
+    </div>
+</div>
+</body>
+</html>

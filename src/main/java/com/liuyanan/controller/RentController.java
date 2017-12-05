@@ -1,6 +1,8 @@
 package com.liuyanan.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.liuyanan.domain.Rent;
+import com.liuyanan.param.RentEx;
 import com.liuyanan.param.RentGroup;
 import com.liuyanan.param.RentParam;
 import com.liuyanan.service.RentService;
@@ -25,19 +27,19 @@ public class RentController {
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.PUT)
-    public void audit(Integer rentId) {
-        rentService.audit(rentId);
+    public void audit(Integer rentId,Integer status) {
+        rentService.audit(rentId,status);
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public List<Rent> list(@RequestParam(required = false) Integer rentId,
-                           @RequestParam(required = false) String userName,
-                           @RequestParam(required = false) Integer depart,
-                           @RequestParam(required = false) Integer outOrIn,
-                           @RequestParam(required = false) Integer rentStatus,
-                           @RequestParam(required = true) Integer curPage,
-                           @RequestParam(required = true) Integer pageSize) {
-        return rentService.list(rentId, userName, depart, outOrIn, rentStatus, curPage, pageSize);
+    public PageInfo<RentEx> list(
+                             @RequestParam(required = false) String userName,
+                             @RequestParam(required = false) Integer depart,
+                             @RequestParam(required = false) Integer outOrIn,
+                             @RequestParam(required = false) Integer rentStatus,
+                             @RequestParam(required = true) Integer curPage,
+                             @RequestParam(required = true) Integer pageSize) {
+        return rentService.list( userName, depart, outOrIn, rentStatus, curPage, pageSize);
     }
 
     @RequestMapping(value = "/list/group", method = RequestMethod.GET)

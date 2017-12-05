@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>办公用品租借</title>
+    <link type="text/css" href="css/bootstrap.css" rel="stylesheet">
+    <link type="text/css" href="css/weaver.css" rel="stylesheet">
+    <script type="text/javascript" src="js/jquery-3.2.1.js"/>
+    <script type="text/javascript" src="js/env.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            console.log("aaa")
+            //获取所有的部门
+            $.ajax(
+                {
+                    url:"/weaver/depart/list",
+                    data:null,
+                    dataType:"json",
+                    type:"GET",
+                    success:function (data) {
+                        for(var i=0;i<data.length;i++){
+                            var depart=data[i];
+                            var id=depart.id;
+                            var name=depart.name;
+                            $("select[name='depart']").append(
+                                ' <option value='+id+'>'+name+'</option>'
+                            );
+                        }
+
+                    }
+                }
+            );
+            $.ajax({
+                url:"/weaver/category/list",
+                data:null,
+                dataType:"json",
+                type:"GET",
+                success:function (data) {
+                    for(var i=0;i<data.length;i++){
+                        var item=data[i];
+                        var id=item.id;
+                        var name=item.categoryName;
+                        $("select[name='cate']").append(
+                            ' <option value='+id+'>'+name+'</option>'
+                        );
+                    }
+                }
+
+            });
+            $("select[name=cate]").change(function () {
+                var cate_id=$("select[name=cate] option:selected").val();
+                $.ajax({
+                    url:"/weaver/item/cate/list",
+                    data:{cateId:cate_id},
+                    dataType:"json",
+                    type:"GET",
+                    success:function (data) {
+                        $("select[name='item']").children().remove();
+                        for(var i=0;i<data.length;i++){
+                            var item=data[i];
+                            var id=item.id;
+                            var name=item.itemName;
+                            $("select[name='item']").append(
+                                ' <option value='+id+'>'+name+'</option>'
+                            );
+                        }
+                    }
+            })
+
+        })
+            $("#submit").click(function () {
+                var username=$("input[name=userName]").val();
+                var depart=$("select[name=depart] :selected").val();
+                var cate=$("select[name=cate] :selected").val();
+                var itemId=$("select[name=item] :selected").val();
+                var count=$("input[name=count]").val();
+                var outOrIn=$("select[name=outOrIn] :selected").val();
+                $.ajaxSetup({
+                    contentType : 'application/json'
+                });
+                $.ajax({
+                    url:"/weaver/rent/post",
+                    data:JSON.stringify(
+                        {userName:username,depart:depart,cate:cate,itemId:itemId,count:count,outOrIn:outOrIn}),
+                    type:"POST",
+                    success:function () {
+                        alert("租借已经提交，等待审核!")
+                    }
+                })
+
+            });
+        })
+
+    </script>
+</head>
+<body>
+<div class="container">
+    <div class="row" style="vertical-align: middle; text-align: center;margin-top: 200px">
+
+        <form role="form" enctype="multipart/form-data" id="form">
+            <table class=" table-responsive" style="width: 100%">
+                <thead class="active">
+                <th colspan="2" style="text-align: center"><h3 class="text-success">办公用品租借</h3></th>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="active form-control" style="background-color:#f5f5f5">用户名：</td>
+                    <td><input type="text" class="form-control" placeholder="请输入您的姓名." name="userName"></td>
+                </tr>
+                <tr>
+                    <td class="active form-control" style="background-color:#f5f5f5">部门：</td>
+                    <td>
+                        <select class="form-control" name="depart">
+
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="active form-control" style="background-color:#f5f5f5">分类：</td>
+                    <td>
+                        <select class="form-control" name="cate">
+
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="active form-control" style="background-color:#f5f5f5">租借用品：</td>
+                    <td>
+                        <select class="form-control" name="item">
+
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="active form-control" style="background-color:#f5f5f5">租借数量：</td>
+                    <td><input type="text" class="form-control" placeholder="请输入数量" name="count"></td>
+                </tr>
+                <tr>
+                    <td class="active form-control" style="background-color:#f5f5f5">借出/归还：</td>
+                    <td>
+                        <select class="form-control" name="outOrIn">
+                        <option selected value="1">借出</option>
+                        <option value="0">归还</option>
+                        </select>
+                    </td>
+                </tr>
+
+                </tbody>
+                <tfoot style="margin-top: 10px">
+                <tr>
+                    <td colspan="2" style="text-align: center">
+                        <input type="button" class="btn" value="提交" style="margin-right: 100px" id="submit">
+                        <input type="reset" class="btn" value="取消">
+                    </td>
+                </tr>
+                </tfoot>
+            </table>
+        </form>
+
+
+    </div>
+</div>
+</body>
+</html>

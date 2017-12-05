@@ -5,10 +5,51 @@
     <title>分类列表</title>
     <link type="text/css" href="../css/bootstrap.css" rel="stylesheet">
     <link type="text/css" href="../css/weaver.css" rel="stylesheet">
+    <script type="text/javascript" src="../js/bootstrap.js"></script>
+
 </head>
 <body>
 <div class="container">
-    <div class="row" style="vertical-align: middle; text-align: center;margin-top: 200px"></div>
+    <div class="row">
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">职工鸟系统管理</a>
+                </div>
+                <div>
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="../index.html">首页</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">用户
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="../rent.html">物品  租借</a></li>
+                                <li><a href="../office_rent.html">办公室申请</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                管理员
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="../admin/create_item.html">物品创建</a></li>
+                                <li><a href="../admin/item_list.html">物品列表</a></li>
+                                <li><a href="../admin/rent_list.html">物品审核</a></li>
+                                <li><a href="../admin/create_office.html">办公室创建</a></li>
+                                <li><a href="../admin/office_list.html">办公室列表</a></li>
+                                <li><a href="../admin/create_cate.html">分类创建</a></li>
+                                <li><a href="../admin/create_depart.html">部门创建</a></li>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div class="row" style="vertical-align: middle; text-align: center;margin-top: 200px">
 
     <table class="table table-responsive table-striped table-bordered">
         <thead>
@@ -25,8 +66,7 @@
 
         </tbody>
     </table>
-
-
+    </div>
 </div>
 </body>
 </html>

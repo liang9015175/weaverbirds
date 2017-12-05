@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>创建商品</title>
+    <title>更新商品</title>
     <link type="text/css" href="../css/bootstrap.css" rel="stylesheet">
     <link type="text/css" href="../css/weaver.css" rel="stylesheet">
     <script type="text/javascript" src="../js/jquery-3.2.1.js"></script>
@@ -10,8 +10,19 @@
     <script type="text/javascript" src="../js/bootstrap.js"></script>
 
     <script type="text/javascript">
+        getAllCates();
+        //截取参数
+        function GetQueryString(name)
+        {
+            var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if(r!=null)return  unescape(r[2]); return null;
+        }
         $(document).ready(function () {
-            getAllCates();
+            var itemId=GetQueryString("itemId")
+            if(itemId!=null&&itemId!=""){
+               getItem(itemId)
+            }
         })
         //获取所有分类
         function getAllCates() {
@@ -33,11 +44,12 @@
 
             });
         }
-        //创建商品
-        function createItem() {
+        //更新商品
+        function updateItem() {
             var itemName=$("input[name=itemName]").val();
             var stockCount=$("input[name=stockCount]").val();
             var cate=$("select[name=cate] :selected").val();
+            var itemId=$("input[name=itemName]").data("id");
             if(itemName==null||itemName==""){
                 alert("分类名称不许为空")
                 return
@@ -51,22 +63,38 @@
             });
             $.ajax(
                 {
-                    url:"/weaver/item/post",
+                    url:"/weaver/item/put",
                     data:JSON.stringify(
                         {
                             itemName:itemName,
                             stockCount:stockCount,
-                            cateId:cate
+                            cateId:cate,
+                            id:itemId
                         }
                     ),
                     dataType:null,
-                    type:"POST",
+                    type:"PUT",
                     success:function () {
                         location.reload()
-                        alert("新增商品成功")
+                        alert("更新商品成功")
                     }
                 }
             )
+        }
+        //获取商品
+        function getItem(itemId) {
+            $.ajax({
+                url:"/weaver/item/get",
+                data:{itemId:itemId},
+                dataType:"JSON",
+                type:"GET",
+                success:function (data) {
+                    $("input[name=itemName]").val(data.itemName);
+                    $("input[name=itemName]").data("id",data.id);
+                    $("input[name=stockCount]").val(data.stockCount);
+                    $("select[name=cate]").find("option[value="+data.cateId+"]").attr("selected",true)
+                }
+            })
         }
     </script>
 </head>
@@ -118,12 +146,12 @@
         <form role="form" enctype="multipart/form-data" id="form">
             <table class=" table-responsive" style="width: 100%">
                 <thead class="active">
-                <th colspan="2" style="text-align: center"><h3 class="text-success">创建办公用品</h3></th>
+                <th colspan="2" style="text-align: center"><h3 class="text-success">更新办公用品</h3></th>
                 </thead>
                 <tbody>
                 <tr>
                     <td class="active form-control" style="background-color:#f5f5f5">用品名称：</td>
-                    <td> <input type="text" class="form-control" placeholder="请输入用品名称" name="itemName"></td>
+                    <td> <input type="text" class="form-control" placeholder="请输入用品名称" name="itemName" ></td>
                 </tr>
                 <tr>
                     <td class="active form-control" style="background-color:#f5f5f5">当前库存：</td>
@@ -139,7 +167,7 @@
                 <tfoot style="margin-top: 10px">
                 <tr>
                     <td colspan="2" style="text-align: center">
-                        <input type="button" class="btn" value="提交" style="margin-right: 100px" onclick="createItem()">
+                        <input type="button" class="btn" value="提交" style="margin-right: 100px" onclick="updateItem()">
                         <input type="reset" class="btn" value="取消">
                     </td>
                 </tr>

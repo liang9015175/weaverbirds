@@ -5,12 +5,88 @@
     <title>创建部门</title>
     <link type="text/css" href="../css/bootstrap.css" rel="stylesheet">
     <link type="text/css" href="../css/weaver.css" rel="stylesheet">
+    <script type="text/javascript" src="../js/jquery-3.2.1.js"></script>
+    <script type="text/javascript" src="../js/env.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.js"></script>
+
+    <script type="text/javascript">
+        function createCate() {
+            var name=$("input[name=itemName]").val();
+            if(name==null||name==""){
+                alert("部门名称不许为空")
+                return
+            }
+            add(name)
+        }
+        function add(itemName) {
+            $.ajaxSetup({
+                contentType : 'application/json'
+            });
+            $.ajax(
+                {
+                    url:"/weaver/depart/post",
+                    data:JSON.stringify(
+                        {
+                            name:itemName
+                        }
+                    ),
+                    dataType:null,
+                    type:"POST",
+                    success:function () {
+                        location.reload()
+                        alert("新增部门成功")
+                    }
+                }
+            )
+        }
+    </script>
 </head>
 <body>
 <div class="container">
+    <div class="row">
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">职工鸟系统管理</a>
+                </div>
+                <div>
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="../index.html">首页</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">用户
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="../rent.html">物品  租借</a></li>
+                                <li><a href="../office_rent.html">办公室申请</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                管理员
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="../admin/create_item.html">物品创建</a></li>
+                                <li><a href="../admin/item_list.html">物品列表</a></li>
+                                <li><a href="../admin/rent_list.html">物品审核</a></li>
+                                <li><a href="../admin/create_office.html">办公室创建</a></li>
+                                <li><a href="../admin/office_list.html">办公室列表</a></li>
+                                <li><a href="../admin/create_cate.html">分类创建</a></li>
+                                <li><a href="../admin/create_depart.html">部门创建</a></li>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+
     <div class="row" style="vertical-align: middle; text-align: center;margin-top: 200px">
 
-        <form role="form" enctype="multipart/form-data" id="form">
+
+    <form role="form" enctype="multipart/form-data" id="form">
             <table class=" table-responsive" style="width: 100%">
                 <thead class="active">
                 <th colspan="2" style="text-align: center"><h3 class="text-success">创建部门</h3></th>
@@ -18,13 +94,13 @@
                 <tbody>
                 <tr>
                     <td class="active form-control" style="background-color:#f5f5f5">部门名称：</td>
-                    <td> <input type="text" class="form-control" placeholder="请输入部门名称" name="name"></td>
+                    <td> <input type="text" class="form-control" placeholder="请输入部门名称" name="itemName"></td>
                 </tr>
                 </tbody>
                 <tfoot style="margin-top: 10px">
                 <tr>
                     <td colspan="2" style="text-align: center">
-                        <input type="button" class="btn" value="提交" style="margin-right: 100px" onclick="addLamu()">
+                        <input type="button" class="btn" value="提交" style="margin-right: 100px" onclick="createCate()">
                         <input type="reset" class="btn" value="取消">
                     </td>
                 </tr>

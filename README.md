@@ -25,8 +25,8 @@ spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/liuyanan?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull
-    username: root
-    password: sl123456
+    username: 
+    password: 
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8

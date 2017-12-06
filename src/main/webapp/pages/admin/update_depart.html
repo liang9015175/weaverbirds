@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>创建分类</title>
+    <title>更新分类</title>
     <link type="text/css" href="../css/bootstrap.css" rel="stylesheet">
     <link type="text/css" href="../css/weaver.css" rel="stylesheet">
     <script type="text/javascript" src="../js/jquery-3.2.1.js"></script>
@@ -10,13 +10,20 @@
     <script type="text/javascript" src="../js/bootstrap.js"></script>
 
     <script type="text/javascript">
+        var cateId=GetQueryString("departId")
+        function GetQueryString(name)
+        {
+            var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if(r!=null)return  unescape(r[2]); return null;
+        }
         function createCate() {
-            var itemName=$("input[name=itemName]").val();
-            if(itemName==null||itemName==""){
-                alert("分类名称不许为空")
+            var name=$("input[name=name]").val();
+            if(name==null||name==""){
+                alert("部门名称不许为空")
                 return
             }
-            add(itemName)
+            add(name)
         }
         function add(itemName) {
             $.ajaxSetup({
@@ -24,22 +31,24 @@
             });
             $.ajax(
                 {
-                    url:"/weaver/category/post",
+                    url:"/weaver/depart/put",
                     data:JSON.stringify(
                         {
-                            categoryName:itemName
+                            name:itemName,
+                            id:cateId
                         }
                     ),
                     dataType:null,
-                    type:"POST",
+                    type:"PUT",
                     success:function () {
                         location.reload()
-                        alert("新增分类成功")
+                        alert("更新部门成功")
                     }
                 }
             )
         }
     </script>
+
 </head>
 <body>
 <div class="container">
@@ -104,17 +113,18 @@
     </nav>
 </div>
 
-    <div class="row" style="vertical-align: middle; text-align: center">
+
+    <div class="row" style="vertical-align: middle; text-align: center;">
 
         <form role="form" enctype="multipart/form-data" id="form">
             <table class=" table-responsive" style="width: 100%">
                 <thead class="active">
-                <th colspan="2" style="text-align: center"><h3 class="text-success">创建分类</h3></th>
+                <th colspan="2" style="text-align: center"><h3 class="text-success">更新部门</h3></th>
                 </thead>
                 <tbody>
                 <tr>
-                    <td class="active form-control" style="background-color:#f5f5f5">分类名称：</td>
-                    <td> <input type="text" class="form-control" placeholder="请输入分类名称" name="itemName"></td>
+                    <td class="active form-control" style="background-color:#f5f5f5">部门名称：</td>
+                    <td> <input type="text" class="form-control" placeholder="请输入部门名称" name="name"></td>
                 </tr>
                 </tbody>
                 <tfoot style="margin-top: 10px">

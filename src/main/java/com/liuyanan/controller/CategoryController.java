@@ -1,12 +1,11 @@
 package com.liuyanan.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.liuyanan.domain.Category;
+import com.liuyanan.param.CategoryEx;
 import com.liuyanan.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,17 +24,17 @@ public class CategoryController {
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public List<Category> selectCondition() {
-        return categoryService.selectCondition();
+    public PageInfo<CategoryEx> selectCondition(Integer curPage, Integer pageSize) {
+        return categoryService.selectCondition(curPage,pageSize);
     }
 
     @RequestMapping(value = "/put", method = RequestMethod.PUT)
-    public void updateCategory(Category category) {
+    public void updateCategory(@RequestBody Category category) {
         categoryService.updateCategory(category);
     }
 
-    @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
-    public void deleteCategory(Integer id) {
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+    public void deleteCategory(@PathVariable Integer id) {
         categoryService.deleteCategory(id);
     }
 }

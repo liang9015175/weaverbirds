@@ -1,5 +1,7 @@
 package com.liuyanan.service;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.liuyanan.dao.OfficeMapper;
 import com.liuyanan.dao.OfficeRentMapper;
 import com.liuyanan.domain.Office;
@@ -36,10 +38,12 @@ public class OfficeService {
         officeMapper.deleteByPrimaryKey(id);
     }
 
-    public List<OfficeEx> list() {
+    public PageInfo<OfficeEx> list(Integer curPage,Integer pageSize) {
         Date date = new Date();
         List<OfficeEx> exes = new ArrayList<>();
+        PageHelper.startPage(curPage,pageSize);
         List<Office> offices = officeMapper.selectByExample(null);
+        PageInfo pageInfo=new PageInfo(offices);
         for (Office office : offices) {
             OfficeEx ex = new OfficeEx();
             BeanUtils.copyProperties(office, ex);
@@ -50,12 +54,16 @@ public class OfficeService {
             for (OfficeRent rent : rents) {
                 if (date.after(rent.getStartTime()) && date.before(rent.getEndTime())) {
                     ex.setStatus("房间被占用");
+                    ex.setStartTime(rent.getStartTime());
+                    ex.setEndTime(rent.getEndTime());
                 }
             }
             exes.add(ex);
-
         }
-        return exes;
+        PageInfo pages=new PageInfo();
+        BeanUtils.copyProperties(pageInfo,pages);
+        pages.setList(exes);
+        return pages;
     }
 
     public void rent(OfficeRent officeRent) {

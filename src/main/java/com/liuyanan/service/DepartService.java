@@ -1,10 +1,15 @@
 package com.liuyanan.service;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.liuyanan.dao.DepartMapper;
 import com.liuyanan.domain.Depart;
+import com.liuyanan.param.DepartEx;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,12 +24,30 @@ public class DepartService {
         departMapper.insertSelective(depart);
     }
     public void deleteDepart(Integer id){
-        departMapper.deleteByPrimaryKey(id);
+        Depart depart=new Depart();
+        depart.setId(id);
+        depart.setStatus(0);
+        departMapper.updateByPrimaryKeySelective(depart);
     }
     public void updateDepart(Depart depart){
         departMapper.updateByPrimaryKeySelective(depart);
     }
-    public List<Depart> list(){
-        return departMapper.selectByExample(null);
+    public PageInfo<DepartEx> list(Integer curPage,Integer pageSize){
+        PageHelper.startPage(curPage,pageSize);
+        List<Depart> departs = departMapper.selectByExample(null);
+        PageInfo pageInfo=new PageInfo(departs);
+        List<DepartEx> result=new ArrayList<>();
+        for(Depart depart:departs){
+            DepartEx departEx=new DepartEx();
+            BeanUtils.copyProperties(depart,departEx);
+            if(depart.getStatus()==0){
+                departEx.setStatusName("已删除");
+            }else {
+                departEx.setStatusName("正常");
+            }
+            result.add(departEx);
+        }
+        pageInfo.setList(result);
+        return pageInfo;
     }
 }

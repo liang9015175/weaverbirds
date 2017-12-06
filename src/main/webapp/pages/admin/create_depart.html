@@ -44,46 +44,67 @@
 <body>
 <div class="container">
     <div class="row">
-        <nav class="navbar navbar-default" role="navigation">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="#">职工鸟系统管理</a>
-                </div>
-                <div>
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="../index.html">首页</a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">用户
-                                <b class="caret"></b>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="../rent.html">物品  租借</a></li>
-                                <li><a href="../office_rent.html">办公室申请</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                管理员
-                                <b class="caret"></b>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="../admin/create_item.html">物品创建</a></li>
-                                <li><a href="../admin/item_list.html">物品列表</a></li>
-                                <li><a href="../admin/rent_list.html">物品审核</a></li>
-                                <li><a href="../admin/create_office.html">办公室创建</a></li>
-                                <li><a href="../admin/office_list.html">办公室列表</a></li>
-                                <li><a href="../admin/create_cate.html">分类创建</a></li>
-                                <li><a href="../admin/create_depart.html">部门创建</a></li>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">职工鸟系统管理</a>
             </div>
-        </nav>
-    </div>
+            <div class="center-block">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="../index.html">首页</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">会议室
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../admin/office_rent.html">会议室申请</a></li>
+                            <li><a href="../admin/office_list.html">会议室列表</a></li>
+                            <li><a href="../admin/create_office.html">会议室创建</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            办公用品
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../admin/rent.html">办公用品申请</a></li>
+                            <li><a href="../admin/create_item.html">办公用品创建</a></li>
+                            <li><a href="../admin/item_list.html">办公用品列表</a></li>
+                            <li><a href="../admin/rent_list.html">办公用品审核</a></li>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            类目
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../admin/create_cate.html">分类创建</a></li>
+                            <li><a href="../admin/cate_list.html">分类列表</a></li>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            类目
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../admin/create_depart.html">部门创建</a></li>
+                            <li><a href="../admin/depart_list.html">部门列表</a></li>
+                            </li>
+                        </ul>
+                    </li>
 
-    <div class="row" style="vertical-align: middle; text-align: center;margin-top: 200px">
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+
+    <div class="row" style="vertical-align: middle; text-align: center;">
 
 
     <form role="form" enctype="multipart/form-data" id="form">

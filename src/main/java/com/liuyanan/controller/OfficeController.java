@@ -1,14 +1,12 @@
 package com.liuyanan.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.liuyanan.domain.Office;
 import com.liuyanan.domain.OfficeRent;
 import com.liuyanan.param.OfficeEx;
 import com.liuyanan.service.OfficeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,8 +24,8 @@ public class OfficeController {
         officeService.addOffice(office);
     }
 
-    @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
-    public void deleteOffice(Integer id) {
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+    public void deleteOffice(@PathVariable Integer id) {
         officeService.deleteOffice(id);
     }
 
@@ -37,8 +35,8 @@ public class OfficeController {
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public List<OfficeEx> list() {
-        return officeService.list();
+    public PageInfo<OfficeEx> list(Integer curPage,Integer pageSize) {
+        return officeService.list(curPage,pageSize);
     }
 
     @RequestMapping(value = "/rent", method = RequestMethod.POST)

@@ -1,12 +1,11 @@
 package com.liuyanan.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.liuyanan.domain.Depart;
+import com.liuyanan.param.DepartEx;
 import com.liuyanan.service.DepartService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,16 +21,16 @@ public class DepartController {
     public void addDepart(@RequestBody Depart depart){
         departService.addDepart(depart);
     }
-    @RequestMapping(value = "/delete",method = RequestMethod.DELETE)
-    public void delete(Integer id){
+    @RequestMapping(value = "/delete/{id}",method = RequestMethod.DELETE)
+    public void delete(@PathVariable Integer id){
         departService.deleteDepart(id);
     }
     @RequestMapping(value = "/put",method = RequestMethod.PUT)
-    public void update(Depart depart){
+    public void update(@RequestBody Depart depart){
         departService.updateDepart(depart);
     }
     @RequestMapping(value = "/list",method = RequestMethod.GET)
-    public List<Depart> list(){
-        return departService.list();
+    public PageInfo<DepartEx> list(Integer curPage, Integer pageSize){
+        return departService.list(curPage,pageSize);
     }
 }

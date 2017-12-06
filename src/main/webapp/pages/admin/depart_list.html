@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>办公室列表</title>
+    <title>部门列表</title>
     <link type="text/css" href="../css/bootstrap.css" rel="stylesheet">
     <link type="text/css" href="../css/weaver.css" rel="stylesheet">
     <script type="text/javascript" src="../js/jquery-3.2.1.js"></script>
@@ -24,7 +24,7 @@
         });
         function search (curPage,pageSize) {
             $.ajax({
-                url:"/weaver/office/list",
+                url:"/weaver/depart/list",
                 data:{curPage:curPage,pageSize:pageSize},
                 dataType:"JSON",
                 type:"GET",
@@ -37,9 +37,7 @@
                             '<tr>'+
                             '            <td>'+item.id+'</td>'+
                             '            <td>'+item.name+'</td>'+
-                            '            <td>'+item.status+'</td>'+
-                            '            <td>'+item.startTime+'</td>'+
-                            '            <td>'+item.endTime+'</td>'+
+                            '            <td>'+item.statusName+'</td>'+
                             '            <td>'+item.createAt+'</td>'+
                             '            <td>'+item.updateAt+'</td>'+
                             '            <td>'+
@@ -70,7 +68,7 @@
             var itemId=$(e).data("id");
             if(status==1){
                 //更新
-                window.location.href="update_office.html?officeId="+itemId
+                window.location.href="update_depart.html?departId="+itemId
             }else {
                 //删除
                 $.ajaxSetup({
@@ -78,7 +76,7 @@
                 });
                 $.ajax(
                     {
-                        url:"/weaver/office/delete/"+itemId,
+                        url:"/weaver/depart/delete/"+itemId,
                         data:"",
                         dataType:"",
                         type:"delete",
@@ -95,7 +93,6 @@
 </head>
 <body>
 <div class="container">
-
     <div class="row">
     <nav class="navbar navbar-default" role="navigation">
         <div class="container-fluid">
@@ -156,17 +153,19 @@
         </div>
     </nav>
 </div>
-
-    <div class="row" style="vertical-align: middle; text-align: center; ;font-size: x-large;color: green">办公室列表</div>
+    <div class="row">
+        <span class="center-block" style="font-size:x-large;color: green; text-align: center">
+            部门列表
+        </span>
+    </div>
+    <div class="row" style="vertical-align: middle; text-align: center;">
 
     <table class="table table-responsive table-striped table-bordered">
         <thead>
         <tr>
-            <th>ID</th>
-            <th>办公室名称</th>
-            <th>是否正在租用</th>
-            <th>开始时间</th>
-            <th>结束时间</th>
+            <th>部门ID</th>
+            <th>部门名称</th>
+            <th>部门状态</th>
             <th>创建时间</th>
             <th>更新时间</th>
             <th>操作</th>
@@ -177,7 +176,7 @@
         </tbody>
         <tfoot>
         <tr>
-            <td colspan="8">
+            <td colspan="6">
                 <ul class="pagination center-block" style="width: 400px" id="page">
                     <li><a href="#">&laquo;</a></li>
                     <li class="active"><a href="#">1</a></li>
@@ -192,8 +191,7 @@
         </tr>
         </tfoot>
     </table>
-
-
+    </div>
 </div>
 </body>
 </html>

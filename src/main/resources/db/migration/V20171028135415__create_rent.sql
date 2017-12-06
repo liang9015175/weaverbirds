@@ -1,11 +1,11 @@
 CREATE TABLE `rent` (
   `id` INT(11) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
-  `user_name` VARCHAR(20) NULL DEFAULT NULL COMMENT '租借用户',
+  `user_name` VARCHAR(20) NULL DEFAULT NULL COMMENT '认领用户',
   `depart_id` INT(10) NULL DEFAULT NULL COMMENT '部门',
   `item_id` INT(10) NULL DEFAULT NULL COMMENT '租用商品',
-  `nums` INT(11) NULL DEFAULT NULL COMMENT '租借数量',
+  `nums` INT(11) NULL DEFAULT NULL COMMENT '认领数量',
   `out_or_in` INT(10) NULL DEFAULT NULL COMMENT '借入还是借出 0：借入 1：借出',
-  `rent_status` INT(10) NULL DEFAULT NULL COMMENT '租借状态 0：审核中 1：审核通过 2：审核拒绝',
+  `rent_status` INT(10) NULL DEFAULT NULL COMMENT '认领状态 0：审核中 1：审核通过 2：审核拒绝',
   `status` INT(10) NULL DEFAULT '1' COMMENT '状态 1:正常 0:删除',
   `create_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `create_by` VARCHAR(20) NULL DEFAULT NULL COMMENT '创建人',
@@ -13,7 +13,7 @@ CREATE TABLE `rent` (
   `update_by` VARCHAR(20) NULL DEFAULT NULL COMMENT '修改人',
   PRIMARY KEY (`id`)
 )
-  COMMENT='租借表'
+  COMMENT='认领表'
   COLLATE='utf8_general_ci'
   ENGINE=InnoDB
 ;

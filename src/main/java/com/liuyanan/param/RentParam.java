@@ -21,7 +21,7 @@ public class RentParam {
      */
     private Integer itemId;
     /**
-     * 租借数量
+     * 认领数量
      */
     private Integer count;
     /**

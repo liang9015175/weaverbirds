@@ -5,6 +5,7 @@ import com.github.pagehelper.PageInfo;
 import com.liuyanan.dao.OfficeMapper;
 import com.liuyanan.dao.OfficeRentMapper;
 import com.liuyanan.domain.Office;
+import com.liuyanan.domain.OfficeExample;
 import com.liuyanan.domain.OfficeRent;
 import com.liuyanan.domain.OfficeRentExample;
 import com.liuyanan.param.OfficeEx;

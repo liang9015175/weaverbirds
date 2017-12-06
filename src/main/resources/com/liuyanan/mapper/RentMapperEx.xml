@@ -10,26 +10,19 @@
         <result column="out_or_in" property="outOrIn" jdbcType="VARCHAR"/>
     </resultMap>
     <select id="listGroup" parameterType="java.util.Map" resultMap="BaseResultMap">
-        SELECT
-            depart.id   AS depart_id,
-            depart.NAME AS depart_name,
-            item.id     AS item_id,
-            item.item_name,
-            rent.count,
-            CASE out_or_in
-            WHEN 0 THEN
-                '借入'
-            ELSE
-                '借出'
-            END as out_or_in
-        FROM
-            rent
-            LEFT JOIN depart ON rent.depart = depart.id
-            LEFT JOIN item ON rent.item_id = item.id
-        WHERE
-            rent.create_at BETWEEN #{startTime}
-            AND #{endTime}
-        GROUP BY
-            depart ,out_or_in ASC
+      select depart.id as depart_id,depart.name as depart_name,item.id as item_id,
+        item.item_name,
+        case rent.out_or_in
+        when 1 then '借出'
+        when 0 then '借入'
+        end as out_or_in,
+        sum(rent.nums) as count
+        from rent
+        left join depart on rent.depart_id=depart.id
+        left join item on rent.item_id=item.id
+        left join category on category.id=item.cate_id
+        where rent.rent_status=1 and rent.create_at between #{startTime} and #{endTime}
+        group by depart.id,rent.item_id,rent.out_or_in
+
     </select>
 </mapper>

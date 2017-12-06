@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.liuyanan.dao.DepartMapper;
 import com.liuyanan.domain.Depart;
+import com.liuyanan.domain.DepartExample;
 import com.liuyanan.param.DepartEx;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,8 +34,10 @@ public class DepartService {
         departMapper.updateByPrimaryKeySelective(depart);
     }
     public PageInfo<DepartEx> list(Integer curPage,Integer pageSize){
+        DepartExample example=new DepartExample();
+        example.or().andStatusEqualTo(1);
         PageHelper.startPage(curPage,pageSize);
-        List<Depart> departs = departMapper.selectByExample(null);
+        List<Depart> departs = departMapper.selectByExample(example);
         PageInfo pageInfo=new PageInfo(departs);
         List<DepartEx> result=new ArrayList<>();
         for(Depart depart:departs){

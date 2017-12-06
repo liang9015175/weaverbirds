@@ -36,9 +36,11 @@ public class RentService {
     public void rent(RentParam param) {
         Rent rent = new Rent();
         BeanUtils.copyProperties(param, rent);
+        rent.setNums(param.getCount());
         rent.setCreateAt(new Date());
         rent.setStatus(1);
         rent.setRentStatus(0);
+        rent.setDepartId(param.getDepart());
         rentMapper.insertSelective(rent);
         //减库存
         itemMapperEx.reduceStockCount(param.getItemId(), param.getCount(), param.getOutOrIn());
@@ -61,7 +63,7 @@ public class RentService {
             criteria.andUserNameLike("%" + userName + "%");
         }
         if(depart!=null){
-            criteria.andDepartEqualTo(depart);
+            criteria.andDepartIdEqualTo(depart);
         }
         if(outOrIn!=null){
             criteria.andOutOrInEqualTo(outOrIn);
@@ -77,7 +79,7 @@ public class RentService {
         for(Rent rent: rents){
             RentEx rentEx = new RentEx();
             BeanUtils.copyProperties(rent,rentEx);
-            Depart departDomain = departMapper.selectByPrimaryKey(rent.getDepart());
+            Depart departDomain = departMapper.selectByPrimaryKey(rent.getDepartId());
             if(departDomain!=null){
                 rentEx.setDepartName(departDomain.getName());
             }

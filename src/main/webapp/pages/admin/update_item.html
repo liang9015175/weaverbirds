@@ -28,10 +28,11 @@
         function getAllCates() {
             $.ajax({
                 url:"/weaver/category/list",
-                data:null,
+                data:{curPage:1,pageSize:100},
                 dataType:"json",
                 type:"GET",
-                success:function (data) {
+                success:function (result) {
+                    var data=result.list;
                     for(var i=0;i<data.length;i++){
                         var item=data[i];
                         var id=item.id;
@@ -145,7 +146,7 @@
                     </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            类目
+                            部门
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
@@ -154,7 +155,11 @@
                             </li>
                         </ul>
                     </li>
-
+                    <li class="dropdown">
+                        <a href="../admin/statics.html">
+                            统计
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>

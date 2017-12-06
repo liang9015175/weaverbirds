@@ -82,10 +82,13 @@
         <table tableName="rent">
             <generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>
         </table>-->
-        <table tableName="office">
+       <!-- <table tableName="office">
             <generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>
         </table>
         <table tableName="office_rent">
+            <generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>
+        </table>-->
+        <table tableName="rent">
             <generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>
         </table>
     </context>
